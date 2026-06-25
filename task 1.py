@@ -1,19 +1,11 @@
 import streamlit as st
 from deep_translator import GoogleTranslator
 
-# -------------------------
-# PAGE CONFIG
-# -------------------------
-
 st.set_page_config(
     page_title="AI Language Translator",
     page_icon="🌍",
     layout="centered"
 )
-
-# -------------------------
-# CUSTOM CSS
-# -------------------------
 
 st.markdown("""
 <style>
@@ -60,10 +52,6 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# -------------------------
-# TITLE
-# -------------------------
-
 st.markdown(
     '<div class="main-title">AI Language Translator</div>',
     unsafe_allow_html=True
@@ -73,10 +61,6 @@ st.markdown(
     '<div class="subtitle">Translate text instantly between languages</div>',
     unsafe_allow_html=True
 )
-
-# -------------------------
-# LANGUAGES
-# -------------------------
 
 languages = {
     "Auto Detect": "auto",
@@ -90,26 +74,14 @@ languages = {
     "Chinese 🇨🇳": "zh-CN"
 }
 
-# -------------------------
-# HISTORY
-# -------------------------
-
 if "history" not in st.session_state:
     st.session_state.history = []
-
-# -------------------------
-# INPUT
-# -------------------------
 
 text = st.text_area(
     "Enter Text",
     height=180,
     placeholder="Type something here..."
 )
-
-# -------------------------
-# LANGUAGE SELECTORS
-# -------------------------
 
 col1, col2 = st.columns(2)
 
@@ -124,10 +96,6 @@ with col2:
         "To",
         list(languages.keys())[1:]
     )
-
-# -------------------------
-# TRANSLATE BUTTON
-# -------------------------
 
 if st.button("Translate", use_container_width=True):
 
@@ -153,7 +121,6 @@ if st.button("Translate", use_container_width=True):
                 unsafe_allow_html=True
             )
 
-            # Save history
 
             st.session_state.history.insert(
                 0,
@@ -167,10 +134,6 @@ if st.button("Translate", use_container_width=True):
 
         except Exception as e:
             st.error(f"Error: {e}")
-
-# -------------------------
-# HISTORY SECTION
-# -------------------------
 
 if st.session_state.history:
 
